@@ -1,0 +1,26 @@
+{
+  "name": "npmalerts",
+  "version": "0.0.1",
+  "description": "Get notified when npm modules are updated!",
+  "homepage": "https://github.com/seriema/npmalerts",
+  "bugs": "https://github.com/seriema/npmalerts/issues",
+  "author": {
+    "name": "John-Philip Johansson",
+    "email": "seriema@gmail.com",
+    "url": "http://johansson.jp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seriema/npmalerts.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.2.0",
+    "grunt-contrib-nodeunit": "~0.1.2",
+    "grunt-contrib-watch": "~0.4.4"
+  }
+}
