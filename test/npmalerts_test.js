@@ -1,14 +1,16 @@
 'use strict';
 
 //var npmalerts = require('../lib/npmalerts.js');
+var npm = require('npm');
 var GitHubApi = require('github');
-
 var github = new GitHubApi({
 	// required
 	version: "3.0.0",
 	// optional
 	timeout: 5000
 });
+
+
 
 var mockPackageJson = {
   "devDependencies": {
@@ -20,7 +22,7 @@ var mockPackageJson = {
   "dependencies": {
     "github": "~0.1.10"
   }
-}
+};
 
 
 /*
@@ -48,13 +50,15 @@ exports['npmalerts'] = {
 		// setup here
 		done();
 	},
+
+	// GitHub
 	'connect to GitHub repo': function(test) {
 		test.expect(2);
 		github.repos.get({
 			user: 'seriema',
 			repo: 'prim.js'
 		}, function(error, result) {
-			test.ok(!error);
+			test.ok(!error, error);
 			test.ok(result);
 			test.done();
 		});
@@ -66,10 +70,8 @@ exports['npmalerts'] = {
 			repo: 'prim.js',
 			path: 'package.json'
 		}, function(error, result) {
-			test.ok(!error);
+			test.ok(!error, error);
 			test.ok(result);
-			test.ok(result.content);
-			test.ok(result.encoding);
 			test.done();
 		});
 	},
@@ -80,42 +82,70 @@ exports['npmalerts'] = {
 			repo: 'prim.js',
 			path: 'package.json'
 		}, function(error, result) {
-			var json = new Buffer(result.content, result.encoding).toString();
-			test.ok(json);
+			var jsonString = new Buffer(result.content, result.encoding).toString();
+			test.ok(jsonString);
 			test.done();
 		});
 	},
+
+	// Parsing package.json
 	'find dependencies in package.json': function(test) {
 		test.expect(1);
-		github.repos.getContent({
-			user: 'seriema',
-			repo: 'prim.js',
-			path: 'package.json'
-		}, function(error, result) {
-			var json = new Buffer(result.content, result.encoding).toString();
-			test.ok(JSON.parse(json).dependencies);
-			test.done();
-		});
+		test.ok(mockPackageJson.dependencies);
+		test.done();
 	},
 	'find devDependencies in package.json': function(test) {
 		test.expect(1);
-		github.repos.getContent({
-			user: 'seriema',
-			repo: 'prim.js',
-			path: 'package.json'
-		}, function(error, result) {
-			var json = new Buffer(result.content, result.encoding).toString();
-			test.ok(JSON.parse(json).devDependencies);
-			test.done();
-		});
+		test.ok(mockPackageJson.devDependencies);
+		test.done();
 	},
 	'parse package name and version from dependencies': function(test) {
-		test.expect(0);
+		test.expect(3);
+		var names = [];
+		var versions = [];
+
+		for (var dep in mockPackageJson.dependencies) {
+			if (mockPackageJson.dependencies.hasOwnProperty(dep)) {
+				names.push(dep);
+				versions.push(mockPackageJson.dependencies[dep]);				
+			}
+		}
+
+		test.strictEqual(names.length, 1);
+		test.strictEqual(names[0], 'github');
+		test.strictEqual(versions[0], '~0.1.10');
+
 		test.done();
 	},
-	'get package version from npm using package name': function(test) {
-		test.expect(0);
-		test.done();
+
+	// npm
+	'load npm': function(test) {
+		test.expect(1);
+		npm.load({}, function(err) {
+        test.ok(!err);
+        test.done();
+     });
+	},
+	'run npm show command': function(test) {
+		test.expect(2);
+		npm.load({}, function() {
+			npm.commands.show(['github', 'versions'], true, function(error, result) {
+				test.ok(!error);
+				test.ok(result);
+				test.done();
+			});
+		});
+	},
+	'get package versions from npm using package name': function(test) {
+		test.expect(1);
+		npm.load({}, function() {
+			npm.commands.show(['github', 'versions'], true, function(error, result) {
+				var versions = result[Object.keys(result)[0]].versions;
+				test.ok(versions.length > 0);
+				console.log('hi', versions[versions.length-1]);
+				test.done();
+			});
+		});
 	},
 	'parse package version from npm': function(test) {
 		test.expect(0);
