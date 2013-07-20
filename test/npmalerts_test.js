@@ -1,14 +1,10 @@
 'use strict';
 
 //var npmalerts = require('../lib/npmalerts.js');
+var githubWrapper = require('../lib/github.js');
+
 var npm = require('npm');
-var GitHubApi = require('github');
-var github = new GitHubApi({
-	// required
-	version: "3.0.0",
-	// optional
-	timeout: 5000
-});
+var semver = require('semver');
 
 
 
@@ -52,38 +48,18 @@ exports['npmalerts'] = {
 	},
 
 	// GitHub
-	'connect to GitHub repo': function(test) {
-		test.expect(2);
-		github.repos.get({
-			user: 'seriema',
-			repo: 'prim.js'
-		}, function(error, result) {
-			test.ok(!error, error);
-			test.ok(result);
-			test.done();
-		});
-	},
 	'get package.json in Github repo': function(test) {
-		test.expect(4);
-		github.repos.getContent({
-			user: 'seriema',
-			repo: 'prim.js',
-			path: 'package.json'
-		}, function(error, result) {
+		test.expect(1);
+		githubWrapper.getPackageJson('seriema', 'prim.js', function(error) {
 			test.ok(!error, error);
-			test.ok(result);
 			test.done();
 		});
 	},
 	'read package.json in Github repo': function(test) {
-		test.expect(1);
-		github.repos.getContent({
-			user: 'seriema',
-			repo: 'prim.js',
-			path: 'package.json'
-		}, function(error, result) {
-			var jsonString = new Buffer(result.content, result.encoding).toString();
-			test.ok(jsonString);
+		test.expect(2);
+		githubWrapper.getPackageJson('seriema', 'prim.js', function(error, json) {
+			test.notEqual(json, undefined);
+			test.strictEqual(typeof json, 'object');
 			test.done();
 		});
 	},
@@ -91,29 +67,32 @@ exports['npmalerts'] = {
 	// Parsing package.json
 	'find dependencies in package.json': function(test) {
 		test.expect(1);
+//		var packageHandler = new Package(mockPackageJson);
+//		test.ok(packageHandler.hasDependencies());
 		test.ok(mockPackageJson.dependencies);
 		test.done();
 	},
 	'find devDependencies in package.json': function(test) {
 		test.expect(1);
+//		var packageHandler = new Package(mockPackageJson);
+//		test.ok(packageHandler.hasDevDependencies());
 		test.ok(mockPackageJson.devDependencies);
 		test.done();
 	},
 	'parse package name and version from dependencies': function(test) {
 		test.expect(3);
-		var names = [];
-		var versions = [];
+		var deps = mockPackageJson.dependencies;
+		var packages = [];
 
-		for (var dep in mockPackageJson.dependencies) {
-			if (mockPackageJson.dependencies.hasOwnProperty(dep)) {
-				names.push(dep);
-				versions.push(mockPackageJson.dependencies[dep]);				
+		for (var dep in deps) {
+			if (deps.hasOwnProperty(dep)) {
+				packages.push( { name: dep, version: deps[dep] } );
 			}
 		}
 
-		test.strictEqual(names.length, 1);
-		test.strictEqual(names[0], 'github');
-		test.strictEqual(versions[0], '~0.1.10');
+		test.strictEqual(packages.length, 1);
+		test.strictEqual(packages[0].name, 'github');
+		test.strictEqual(packages[0].version, '~0.1.10');
 
 		test.done();
 	},
@@ -147,24 +126,32 @@ exports['npmalerts'] = {
 			});
 		});
 	},
-	'parse package version from npm': function(test) {
-		test.expect(0);
+
+	// semver
+	'check package version': function(test) {
+		test.expect(1);
+		test.ok(semver.valid('0.1.10'));
 		test.done();
 	},
 	'detect new version available': function(test) {
-		test.expect(0);
+		test.expect(1);
+		test.ok(semver.lt('1.2.3', '9.8.7'));
 		test.done();
 	},
 	'detect packages with same version': function(test) {
-		test.expect(0);
+		test.expect(2);
+		test.ok(!semver.lt('1.2.3', '1.2.3'));
+		test.ok(!semver.gt('1.2.3', '1.2.3'));
 		test.done();
 	},
 	'detect new version is within semver limits of package.json': function(test) {
-		test.expect(0);
+		test.expect(1);
+		test.ok(semver.satisfies('1.2.4', '~1.2.3'));
 		test.done();
 	},
 	'detect new version is outside of semver limits of package.json': function(test) {
-		test.expect(0);
+		test.expect(1);
+		test.ok(!semver.satisfies('1.3.0', '~1.2.3'));
 		test.done();
 	},
 
