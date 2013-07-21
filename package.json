@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "Get notified when npm modules are updated!",
   "homepage": "https://github.com/seriema/npmalerts",
-  "bugs": "https://github.com/seriema/npmalerts/issues",
+  "bugs": {
+    "url": "https://github.com/seriema/npmalerts/issues"
+  },
   "author": {
     "name": "John-Philip Johansson",
     "email": "seriema@gmail.com",
@@ -18,6 +20,10 @@
       "type": "MIT"
     }
   ],
+  "engines": {
+    "node": "~0.10.13",
+    "npm": "~1.3.2"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.2.0",
@@ -27,6 +33,18 @@
   "dependencies": {
     "github": "~0.1.10",
     "npm": "~1.3.4",
-    "semver": "~2.0.10"
-  }
+    "semver": "~2.0.10",
+    "express": "~3.3.4"
+  },
+  "main": "./lib/web.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "keywords": [
+    "npm"
+  ],
+  "license": "MIT"
 }
