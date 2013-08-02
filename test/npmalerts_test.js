@@ -2,8 +2,8 @@
 
 //var npmalerts = require('../lib/npmalerts.js');
 var githubWrapper = require('../lib/github.js');
+var npmWrapper = require('../lib/npm.js');
 
-var npm = require('npm');
 var semver = require('semver');
 
 
@@ -98,32 +98,19 @@ exports['npmalerts'] = {
 	},
 
 	// npm
-	'load npm': function(test) {
-		test.expect(1);
-		npm.load({}, function(err) {
-        test.ok(!err);
-        test.done();
-     });
-	},
 	'run npm show command': function(test) {
 		test.expect(2);
-		npm.load({}, function() {
-			npm.commands.show(['github', 'versions'], true, function(error, result) {
-				test.ok(!error);
-				test.ok(result);
-				test.done();
-			});
+		npmWrapper.getLatestVersion('github', function(error, version) {
+			test.ok(!error);
+			test.ok(version);
+			test.done();
 		});
 	},
 	'get package versions from npm using package name': function(test) {
 		test.expect(1);
-		npm.load({}, function() {
-			npm.commands.show(['github', 'versions'], true, function(error, result) {
-				var versions = result[Object.keys(result)[0]].versions;
-				test.ok(versions.length > 0);
-				console.log('hi', versions[versions.length-1]);
-				test.done();
-			});
+		npmWrapper.getLatestVersion('github', function(error, version) {
+			test.ok(version);
+			test.done();
 		});
 	},
 
@@ -136,6 +123,7 @@ exports['npmalerts'] = {
 	'detect new version available': function(test) {
 		test.expect(1);
 		test.ok(semver.lt('1.2.3', '9.8.7'));
+		console.log('hi', semver.valid('1.2.3'));
 		test.done();
 	},
 	'detect packages with same version': function(test) {
