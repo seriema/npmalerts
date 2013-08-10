@@ -11,7 +11,6 @@ insert_final_newline = true
 ; 4 space indentation
 [*.py]
 indent_style = space
-indent_size = 4
 
 ; Tab indentation (no size specified)
 [*.js]
