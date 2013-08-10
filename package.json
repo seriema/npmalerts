@@ -28,7 +28,8 @@
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.2.0",
     "grunt-contrib-nodeunit": "~0.1.2",
-    "grunt-contrib-watch": "~0.4.4"
+    "grunt-contrib-watch": "~0.4.4",
+    "bower": "~1.0.3"
   },
   "dependencies": {
     "github": "~0.1.10",
