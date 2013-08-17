@@ -3,8 +3,10 @@ html
     head
         title npmalerts - letting you know when there's a new version of your npm packages
         link(rel='stylesheet', href='/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/css/font-awesome.min.css')
         style.
             .container { max-width: 770px }
+            .form-group { margin-right: 10px }
     body
         div.container
             p &nbsp;
@@ -25,14 +27,14 @@ html
 
             div.row
                 div.col-lg-4
-                    h2 Simple
-                    p There's no accounts here. Just add your email and GitHub addresses to sign up, and do the same to cancel watch.
+                    h2 <i class="icon-beer"></i> Simple
+                    p There's no accounts here. Just add your email and GitHub to sign up, and do the same to cancel watch.
                 div.col-lg-4
-                    h2 Push, not poll
+                    h2 <i class="icon-envelope-alt"></i> Email
                     p Tired of manually having to use tools to know if there's a newer version of a package you use? Sign up above and let npmalerts worry about that for you. You'll get an email when there's something new released.
                 div.col-lg-4
-                    h2 All versions
-                    p You'll get an email when there's a new version of a package within your semver constraints, but we'll also let you know when there's something new outside of that range in case you want to change it.
+                    h2 <i class="icon-check"></i> All versions
+                    p You'll get notified when there's a new version of a package within your semver constraints, but we'll also let you know when there's something new outside of that range in case you want to change it.
 
             hr
 
