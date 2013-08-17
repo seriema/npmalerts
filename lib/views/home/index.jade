@@ -1,6 +1,43 @@
 doctype
 html
     head
-        title= title
+        title npmalerts - letting you know when there's a new version of your npm packages
+        link(rel='stylesheet', href='/css/bootstrap.min.css')
+        style.
+            .container { max-width: 770px }
     body
-        p= title
+        div.container
+            p &nbsp;
+
+        div.container
+            div.jumbotron
+                h1 npmalerts
+                p.lead Start observing your GitHub repository and get notified when a new node package is available.
+
+                form.form-inline(role='form')
+                    div.form-group
+                        label.sr-only(for='email') Email address
+                        input.form-control#email(type='email', placeholder='Enter email', required)
+                    div.form-group
+                        label.sr-only(for=url,) Email address
+                        input.form-control#url(type='url', placeholder='Github URL', required)
+                    button.btn.btn-primary(type='submit') Watch
+
+            div.row
+                div.col-lg-4
+                    h2 Simple
+                    p There's no accounts here. Just add your email and GitHub addresses to sign up, and do the same to cancel watch.
+                div.col-lg-4
+                    h2 Push, not poll
+                    p Tired of manually having to use tools to know if there's a newer version of a package you use? Sign up above and let npmalerts worry about that for you. You'll get an email when there's something new released.
+                div.col-lg-4
+                    h2 All versions
+                    p You'll get an email when there's a new version of a package within your semver constraints, but we'll also let you know when there's something new outside of that range in case you want to change it.
+
+            hr
+
+            footer.footer
+                p Created by JP
+
+        script(src='/js/angular.min.js')
+        script(src='/js/ui-bootstrap.min.js')
