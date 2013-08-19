@@ -1,5 +1,5 @@
 doctype
-html
+html(ng-app="npmalerts")
     head
         title npmalerts - letting you know when there's a new version of your npm packages
         link(rel='stylesheet', href='/css/bootstrap.min.css')
@@ -7,6 +7,7 @@ html
         style.
             .container { max-width: 770px }
             .form-group { margin-right: 10px }
+
     body
         div.container
             p &nbsp;
@@ -16,14 +17,16 @@ html
                 h1 npmalerts
                 p.lead Start observing your GitHub repository and get notified when a new node package is available.
 
-                form.form-inline(role='form')
+                form.form-inline(role='form', ng-controller="SignUpCtrl")
                     div.form-group
                         label.sr-only(for='email') Email address
-                        input.form-control#email(type='email', placeholder='Enter email', required)
+                        input.form-control#email(type='email', placeholder='Enter email', ng-model='email', required)
                     div.form-group
-                        label.sr-only(for=url,) Email address
-                        input.form-control#url(type='url', placeholder='Github URL', required)
-                    button.btn.btn-primary(type='submit') Watch
+                        label.sr-only(for=url,) GitHub URL
+                        input.form-control#url(type='url', placeholder='Github URL', ng-model='url', required)
+                    button.btn.btn-primary(type='submit', ng-click="submitWatch()") Watch
+
+                    alert(ng-repeat="alert in alerts", type="alert.type", close="closeAlert($index)") {{alert.msg}}
 
             div.row
                 div.col-lg-4
@@ -43,3 +46,5 @@ html
 
         script(src='/js/angular.min.js')
         script(src='/js/ui-bootstrap.min.js')
+        script(src='/js/ui-bootstrap-tpls.min.js')
+        script(src='/home/index.js')
