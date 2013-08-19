@@ -14,8 +14,8 @@ html(ng-app="npmalerts")
 
         div.container
             div.jumbotron
-                h1 npmalerts
-                p.lead Start observing your GitHub repository and get notified when a new node package is available.
+                h1 npm alerts
+                p.lead Start observing your GitHub repository and get an email whenever a new Node package is available.
 
                 form.form-inline(role='form', ng-controller="SignUpCtrl")
                     div.form-group
@@ -30,14 +30,20 @@ html(ng-app="npmalerts")
 
             div.row
                 div.col-lg-4
-                    h2 <i class="icon-beer"></i> Simple
-                    p There's no accounts here. Just add your email and GitHub to sign up, and do the same to cancel watch.
+                    h2 <i class="icon-beer"></i> Free
+                    p The service is completely free and your email will only be used to send notifications about updates to packages you use.
                 div.col-lg-4
                     h2 <i class="icon-envelope-alt"></i> Email
-                    p Tired of manually having to use tools to know if there's a newer version of a package you use? Sign up above and let npmalerts worry about that for you. You'll get an email when there's something new released.
+                    p Sign up above and let npmalerts worry about checking for new node package versions. You'll get an email when something you use has a new release.
                 div.col-lg-4
                     h2 <i class="icon-check"></i> All versions
-                    p You'll get notified when there's a new version of a package within your semver constraints, but we'll also let you know when there's something new outside of that range in case you want to change it.
+                    p You'll get notified when there's a new version of a package within your semver constraints, but we'll also let you know when there's something new outside of that range in case you want to upgrade.
+
+            div.row
+                div.col-lg-12
+                    h2 About
+                    p This page was created by a developer tired of checking for new versions of node packages. Especially when using GruntJS. Costs are so far within the free account on Heroku. If this changes I might ask for donations or add ads to cover costs.
+                    p It is hosted by Heroku and uses the MEAN-stack (i.e. MongoDB, ExpressJS, AngularJS, and NodeJS). It also uses Twitter Bootstrap (actually Angular Bootstrap) If you're interested in the code then feel free to check out the sourcecode at GtiHub.
 
             hr
 
