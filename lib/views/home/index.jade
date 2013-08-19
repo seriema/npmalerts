@@ -17,14 +17,17 @@ html(ng-app="npmalerts")
                 h1 npm alerts
                 p.lead Start observing your GitHub repository and get an email whenever a new Node package is available.
 
-                form.form-inline(role='form', ng-controller="SignUpCtrl")
+                form.form-inline(role='form', ng-controller="SignUpCtrl", ng-submit="submitWatch()")
                     div.form-group
                         label.sr-only(for='email') Email address
                         input.form-control#email(type='email', placeholder='Enter email', ng-model='email', required)
                     div.form-group
                         label.sr-only(for=url,) GitHub URL
                         input.form-control#url(type='url', placeholder='Github URL', ng-model='url', required)
-                    button.btn.btn-primary(type='submit', ng-click="submitWatch()") Watch
+                    button.btn.btn-primary(type='submit') Watch
+
+                    p
+                        a(href='#') Already watching a repo and want to cancel?
 
                     alert(ng-repeat="alert in alerts", type="alert.type", close="closeAlert($index)") {{alert.msg}}
 
