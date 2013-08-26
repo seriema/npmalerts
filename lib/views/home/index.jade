@@ -1,7 +1,7 @@
 doctype
 html(ng-app="npmalerts")
     head
-        title npmalerts - letting you know when there's a new version of your npm packages
+        title npm alerts - letting you know when there's a new version of your npm packages
         link(rel='stylesheet', href='/css/bootstrap.min.css')
         link(rel='stylesheet', href='/css/font-awesome.min.css')
         style.
@@ -9,7 +9,7 @@ html(ng-app="npmalerts")
             .form-group { margin-right: 10px }
 
     body
-        a(href="https://github.com/seriema/npmalerts") <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub">
+        a(href='https://github.com/seriema/npmalerts') <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub">
 
         div.container
             p &nbsp;
@@ -19,42 +19,42 @@ html(ng-app="npmalerts")
                 h1 npm alerts
                 p.lead Start observing your GitHub repository and get an email whenever a new Node package is available.
 
-                form.form-inline(role='form', ng-controller="SignUpCtrl", ng-submit="submitWatch()")
+                form.form-inline(role='form', ng-controller='SignUpCtrl', ng-submit='submitWatch()')
                     div.form-group
                         label.sr-only(for='email') Email address
                         input.form-control#email(type='email', placeholder='Enter email', ng-model='email', required)
                     div.form-group
-                        label.sr-only(for=url,) GitHub URL
+                        label.sr-only(for='url') GitHub URL
                         input.form-control#url(type='url', placeholder='Github URL', ng-model='url', required)
                     button.btn.btn-primary(type='submit') Watch
 
                     p
                         a(href='#') Already watching a repo and want to cancel?
 
-                    alert(ng-repeat="alert in alerts", type="alert.type", close="closeAlert($index)") {{alert.msg}}
+                    alert(ng-repeat='alert in alerts', type='alert.type', close='closeAlert($index)') {{alert.msg}}
 
             div.row
                 div.col-lg-4
                     h2 <i class="icon-beer"></i> Free
                     p The service is completely free and your email will only be used to send notifications about updates to packages you use.
                 div.col-lg-4
-                    h2 <i class="icon-envelope-alt"></i> Email
-                    p Sign up above and let npmalerts worry about checking for new node package versions. You'll get an email when something you use has a new release.
+                    h2 <i class="icon-envelope-alt"></i> Notification
+                    p Sign up above and you'll get an email when a Node package defined in your package.json has a new release.
                 div.col-lg-4
                     h2 <i class="icon-check"></i> All versions
-                    p You'll get notified when there's a new version of a package within your semver constraints, but we'll also let you know when there's something new outside of that range in case you want to upgrade.
+                    p Semver version ranges are checked, but you'll get notified either way in case you want to upgrade your package.json.
 
             div.row
                 div.col-lg-12
                     h2 About
-                    p This page was created by a developer tired of checking for new versions of node packages (especially when using GruntJS). Services he found either required manual checks or tried to charge for it.
-                    p The service is free because usage is within the free account on Heroku. If this changes I might ask for donations or add ads to cover costs.
-                    p It is hosted by Heroku and uses the MEAN-stack (i.e. MongoDB, ExpressJS, AngularJS, and NodeJS). It also uses Twitter Bootstrap (actually Angular Bootstrap). If you're interested in the code then feel free to check out the sourcecode at <a href="https://github.com/seriema/npmalerts">GtiHub</a>.
+                    p This page was created by a developer tired of checking for new versions of node packages (especially when using <a href="#">GruntJS</a>). Services he found either required manual checks or tried to charge for it.
+                    p The service is free because usage is within the free account on <a href="#">Heroku</a>. If this changes I might ask for donations or add ads to cover costs.
+                    p npm alerts is hosted on Heroku and uses the MEAN-stack (i.e. <a href="#">MongoDB</a>, <a href="#">ExpressJS</a>, <a href="#">AngularJS</a>, and <a href="#">NodeJS</a>). It also uses <a href="#">Twitter Bootstrap</a> (actually <a href="#">Angular Bootstrap</a>). If you're interested in the code then feel free to check out the sourcecode at <a href="https://github.com/seriema/npmalerts">GtiHub</a>.
 
             hr
 
             footer.footer
-                p Created by JP
+                p Created by Seriema (<a href="#">@seriemajp</a>)
 
         script(src='/js/angular.min.js')
         script(src='/js/ui-bootstrap.min.js')
