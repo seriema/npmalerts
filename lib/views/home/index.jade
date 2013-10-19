@@ -34,6 +34,12 @@ html(ng-app="npmalerts")
                     alert(ng-repeat='alert in alerts', type='alert.type', close='closeAlert($index)') {{alert.msg}}
 
             div.row
+                div.col-lg-12
+                    div.alert.alert-danger
+                        strong Pre-alpha!
+                        p I'm still playing around with this. Your email will be stored and will start receiving emails when I'm done. Feel free to help out on Github!
+
+            div.row
                 div.col-lg-4
                     h2 <i class="icon-beer"></i> Free
                     p The service is completely free and your email will only be used to send notifications about updates to packages you use.
