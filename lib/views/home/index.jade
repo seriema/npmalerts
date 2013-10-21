@@ -39,7 +39,7 @@ html(ng-app='npmalerts')
                         input.form-control#url(type='url', placeholder='Github URL', ng-model='url', required)
                     button.btn.btn-primary(type='submit') Watch
 
-//                    p
+                    //p
                         a(href='#') Already watching a repo and want to cancel?
 
                     alert(ng-repeat='alert in alerts', type='alert.type', close='closeAlert($index)') {{alert.msg}}
