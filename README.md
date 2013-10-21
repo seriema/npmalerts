@@ -3,12 +3,7 @@
 Get notified when npm modules are updated!
 
 ## Getting Started
-Install the module with: `npm install npmalerts`
-
-```javascript
-var npmalerts = require('npmalerts');
-npmalerts.awesome(); // "awesome"
-```
+Register yourself on the website, www.npmalerts.com
 
 ## Documentation
 _(Coming soon)_
