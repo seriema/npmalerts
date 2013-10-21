@@ -1,9 +1,17 @@
 doctype
-html(ng-app="npmalerts")
+html(ng-app='npmalerts')
     head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible',content='IE=edge')
+        meta(name='description', content='')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+
         title npm alerts - letting you know when there's a new version of your npm packages
+
+        link(type='text/plain',rel='author',href='/humans.txt')
         link(rel='stylesheet', href='/css/bootstrap.min.css')
         link(rel='stylesheet', href='/css/font-awesome.min.css')
+
         style.
             .container { max-width: 770px }
             .form-group { margin-right: 10px }
@@ -13,6 +21,9 @@ html(ng-app="npmalerts")
 
         div.container
             p &nbsp;
+            //if lt IE 7
+                p.browsehappy
+                    You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
 
         div.container
             div.jumbotron
@@ -28,39 +39,47 @@ html(ng-app="npmalerts")
                         input.form-control#url(type='url', placeholder='Github URL', ng-model='url', required)
                     button.btn.btn-primary(type='submit') Watch
 
-                    p
+//                    p
                         a(href='#') Already watching a repo and want to cancel?
 
                     alert(ng-repeat='alert in alerts', type='alert.type', close='closeAlert($index)') {{alert.msg}}
 
             div.row
-                div.col-lg-12
+                div.col-md-12
                     div.alert.alert-danger
                         strong Pre-alpha!
-                        p I'm still playing around with this. Your email will be stored and will start receiving emails when I'm done. Feel free to help out on Github!
+                        p Everything's up and running but it's an early release. Feel free to help out on Github! Or ask me something on <a href="http://twitter.com/seriemajp">Twitter</a>.'
 
             div.row
-                div.col-lg-4
+                div.col-md-4
                     h2 <i class="icon-beer"></i> Free
                     p The service is completely free and your email will only be used to send notifications about updates to packages you use.
-                div.col-lg-4
+                div.col-md-4
                     h2 <i class="icon-envelope-alt"></i> Notification
                     p Sign up above and you'll get an email when a Node package defined in your package.json has a new release.
-                div.col-lg-4
+                div.col-md-4
                     h2 <i class="icon-check"></i> All versions
                     p Semver version ranges are checked, but you'll get notified either way in case you want to upgrade your package.json.
 
             div.row
-                div.col-lg-12
+                div.col-md-12
                     h2 About
                     p This page was created by a developer tired of checking for new versions of node packages (especially when using <a href="http://gruntjs.com/">GruntJS</a>). Services he found either required manual checks or tried to charge for it.
                     p The service is free because usage is within the free account on <a href="http://heroku.com">Heroku</a>. If this changes I might ask for donations or add ads to cover costs.
-                    p npm alerts is hosted on Heroku and uses the MEAN-stack (i.e. <a href="http://www.mongodb.org/">MongoDB</a>, <a href="http://expressjs.com/">ExpressJS</a>, <a href="http://angularjs.org/">AngularJS</a>, and <a href="http://nodejs.org/">NodeJS</a>). It also uses <a href="http://getbootstrap.com/">Twitter Bootstrap</a> (actually <a href="http://angular-ui.github.io/bootstrap/">Angular Bootstrap</a>). If you're interested in the code then feel free to check out the sourcecode at <a href="https://github.com/seriema/npmalerts">GitHub</a>.
+                    //p npm alerts is hosted on Heroku and uses the MEAN-stack (i.e. <a href="http://www.mongodb.org/">MongoDB</a>, <a href="http://expressjs.com/">ExpressJS</a>, <a href="http://angularjs.org/">AngularJS</a>, and <a href="http://nodejs.org/">NodeJS</a>). It also uses <a href="http://getbootstrap.com/">Twitter Bootstrap</a> (actually <a href="http://angular-ui.github.io/bootstrap/">Angular Bootstrap</a>). If you're interested in the code then feel free to check out the sourcecode at <a href="https://github.com/seriema/npmalerts">GitHub</a>.
 
             hr
 
             footer.footer
-                p Created by Seriema (<a href="https://twitter.com/seriemajp">@seriemajp</a>)
+                p Created by <a href="https://twitter.com/seriemajp">@seriemajp</a>
+
+        script.
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
 
         script(src='/js/angular.min.js')
         script(src='/js/ui-bootstrap.min.js')
