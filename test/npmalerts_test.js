@@ -63,6 +63,18 @@ exports['npmalerts'] = {
 			test.done();
 		});
 	},
+	'parse username from Github address': function(test) {
+		test.expect(1);
+		var address = 'https://github.com/seriema/seriema.github.io.git';
+		test.strictEqual(githubWrapper.getUserFromUrl(address), 'seriema');
+		test.done();
+	},
+	'parse project name from Github adress': function(test) {
+		test.expect(1);
+		var address = 'https://github.com/seriema/seriema.github.io.git';
+		test.strictEqual(githubWrapper.getRepoFromUrl(address), 'seriema.github.io');
+		test.done();
+	},
 
 	// Parsing package.json
 	'find dependencies in package.json': function(test) {
