@@ -41,7 +41,8 @@
     "path": "~0.4.9",
     "jade": "~0.35.0",
     "express-validator": "~0.8.0",
-    "sendgrid": "~0.3.1"
+    "sendgrid": "~0.3.1",
+    "underscore": "~1.5.2"
   },
   "main": "./lib/web.js",
   "directories": {
