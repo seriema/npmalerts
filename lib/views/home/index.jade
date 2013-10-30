@@ -37,6 +37,10 @@ html(ng-app='npmalerts')
                     div.form-group
                         label.sr-only(for='url') GitHub URL
                         input.form-control#url(type='url', placeholder='Github URL', ng-model='url', required)
+                    //div.checkbox
+                        label
+                            input(type='checkbox') Ignore if it satisfies your semver range
+
                     button.btn.btn-primary(type='submit') Watch
 
                     //p
