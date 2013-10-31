@@ -27,14 +27,13 @@
   },
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-jshint": "~0.7.0",
     "grunt-contrib-nodeunit": "~0.2.1",
     "grunt-contrib-watch": "~0.5.3",
     "bower": "~1.2.7"
   },
   "dependencies": {
     "github": "~0.1.12",
-    "npm": "~1.3.13",
     "semver": "~2.2.1",
     "express": "~3.4.4",
     "pg": "~2.2.0",
