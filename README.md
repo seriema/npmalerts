@@ -1,4 +1,4 @@
-# npmalerts [![Build Status](https://secure.travis-ci.org/seriema/npmalerts.png?branch=master)](http://travis-ci.org/seriema/npmalerts)
+# npmalerts [![Build Status](https://secure.travis-ci.org/seriema/npmalerts.png?branch=master)](http://travis-ci.org/seriema/npmalerts) [![Dependency Status](https://david-dm.org/seriema/npmalerts.png)](https://david-dm.org/seriema/npmalerts) [![devDependency Status](https://david-dm.org/seriema/npmalerts/dev-status.png)](https://david-dm.org/seriema/npmalerts#info=devDependencies)
 
 Get notified when npm modules are updated!
 
