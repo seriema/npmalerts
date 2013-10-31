@@ -33,15 +33,15 @@
     "bower": "~1.2.7"
   },
   "dependencies": {
-    "github": "~0.1.10",
-    "npm": "~1.3.11",
-    "semver": "~2.1.0",
-    "express": "~3.4.0",
+    "github": "~0.1.12",
+    "npm": "~1.3.13",
+    "semver": "~2.2.1",
+    "express": "~3.4.4",
     "pg": "~2.2.0",
     "path": "~0.4.9",
     "jade": "~0.35.0",
     "express-validator": "~0.8.0",
-    "sendgrid": "~0.3.1",
+    "sendgrid": "~0.4.2",
     "underscore": "~1.5.2"
   },
   "main": "./lib/web.js",
