@@ -122,7 +122,7 @@ exports['npmalerts'] = {
 	},
 
 	// npm
-	'run npm show command': function(test) {
+	'get latest package version': function(test) {
 		test.expect(2);
 		npmWrapper.getLatestVersion('github', function(error, version) {
 			test.ok(!error);
