@@ -147,7 +147,6 @@ exports['npmalerts'] = {
 	'detect new version available': function(test) {
 		test.expect(1);
 		test.ok(semver.lt('1.2.3', '9.8.7'));
-		console.log('hi', semver.valid('1.2.3'));
 		test.done();
 	},
 	'detect packages with same version': function(test) {
