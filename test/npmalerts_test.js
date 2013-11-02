@@ -130,10 +130,13 @@ exports['npmalerts'] = {
 			test.done();
 		});
 	},
-	'get package versions from npm using package name': function(test) {
-		test.expect(1);
-		npmWrapper.getLatestVersion('github', function(error, version) {
-			test.ok(version);
+	'get all packages from npm': function(test) {
+		test.expect(2);
+        var yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+		npmWrapper.getLatestPackages(yesterday, function(error, newPackages) {
+            test.ok(!error);
+			test.ok(newPackages);
 			test.done();
 		});
 	},
