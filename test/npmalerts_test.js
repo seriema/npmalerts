@@ -5,8 +5,18 @@ var githubWrapper = require('../lib/github.js');
 var npmWrapper = require('../lib/npm.js');
 
 var semver = require('semver');
+var _ = require('underscore');
 
 
+var sampleGithubUrls = [
+    'http://github.com/seriema/seriema.github.io.git',
+    'https://github.com/seriema/seriema.github.io.git',
+    'http://github.com/seriema/seriema.github.io',
+    'https://github.com/seriema/seriema.github.io',
+    'http://www.github.com/seriema/seriema.github.io',
+    'https://www.github.com/seriema/seriema.github.io',
+    'git://github.com/seriema/seriema.github.io.git'
+];
 
 var mockPackageJson = {
   "devDependencies": {
@@ -64,15 +74,17 @@ exports['npmalerts'] = {
 		});
 	},
 	'parse username from Github address': function(test) {
-		test.expect(1);
-		var address = 'https://github.com/seriema/seriema.github.io.git';
-		test.strictEqual(githubWrapper.getUserFromUrl(address), 'seriema');
-		test.done();
+		test.expect(sampleGithubUrls.length);
+        _.forEach(sampleGithubUrls, function(address) {
+            test.strictEqual(githubWrapper.getUserFromUrl(address), 'seriema', address);
+        });
+        test.done();
 	},
 	'parse project name from Github adress': function(test) {
-		test.expect(1);
-		var address = 'https://github.com/seriema/seriema.github.io.git';
-		test.strictEqual(githubWrapper.getRepoFromUrl(address), 'seriema.github.io');
+        test.expect(sampleGithubUrls.length);
+        _.forEach(sampleGithubUrls, function(address) {
+            test.strictEqual(githubWrapper.getRepoFromUrl(address), 'seriema.github.io', address);
+        });
 		test.done();
 	},
 
