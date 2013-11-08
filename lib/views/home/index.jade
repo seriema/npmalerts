@@ -27,11 +27,11 @@ html(ng-app='npmalerts')
                     You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
 
         div.container
-            div.jumbotron
+            div.jumbotron(ng-controller='SignUpCtrl')
                 h1 npm alerts
-                p.lead Start observing your GitHub repository and get an email whenever a new Node package is available.
+                p.lead Start observing your GitHub repository and get an email whenever a new node.js package is available.
 
-                form.form-inline(role='form', ng-controller='SignUpCtrl', ng-submit='submitWatch()')
+                form.form-inline(role='form', ng-submit='submit()')
                     div.form-group
                         label.sr-only(for='email') Email address
                         input.form-control#email(type='email', placeholder='Enter email', ng-model='email', required)
@@ -42,17 +42,20 @@ html(ng-app='npmalerts')
                         label
                             input(type='checkbox') Ignore if it satisfies your semver range
 
-                    button.btn.btn-primary(type='submit') Watch
+                    button.btn.btn-primary(type='submit', ng-show='isAdding') Watch
+                    button.btn.btn-danger(type='submit', ng-hide='isAdding') Unwatch
 
-                    //p
-                        a(href='#') Already watching a repo and want to cancel?
+                p(ng-show='isAdding')
+                    a(href='#', ng-click='showUnwatch()') Already watching a repo and want to cancel?
+                p(ng-hide='isAdding')
+                    a(href='#', ng-click='showWatch()') Want to watch a repo instead?
 
-                    alert(ng-repeat='alert in alerts', type='alert.type', close='closeAlert($index)') {{alert.msg}}
+                alert(ng-repeat='alert in alerts', type='alert.type', close='closeAlert($index)') {{alert.msg}}
 
             div.row
                 div.col-md-12
                     div.alert.alert-info
-                        strong Pre-alpha!
+                        strong Alpha!
                         p Help me test out this service! Let me know what you think on <a href="http://twitter.com/seriemajp">Twitter</a>!
 
             div.row
