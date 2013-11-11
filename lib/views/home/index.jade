@@ -38,12 +38,18 @@ html(ng-app='npmalerts')
                     div.form-group
                         label.sr-only(for='url') GitHub URL
                         input.form-control#url(type='url', placeholder='Github URL', ng-model='url', required)
-                    //div.checkbox
-                        label
-                            input(type='checkbox') Ignore if it satisfies your semver range
 
                     button.btn.btn-primary(type='submit', ng-show='isAdding') Watch
                     button.btn.btn-danger(type='submit', ng-hide='isAdding') Unwatch
+
+                    br
+
+                    div.checkbox(ng-show='isAdding')
+                        label
+                            input(type='checkbox', ng-model='ignorePatches')
+                            small &nbsp; Ignore patches (
+                                a(href='http://semver.org/') ?
+                            | )
 
                 p(ng-show='isAdding')
                     a(href='#', ng-click='showUnwatch()') Already watching a repo and want to cancel?
