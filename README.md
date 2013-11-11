@@ -15,6 +15,7 @@ _(Coming soon)_
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+0.2.0 - 11 nov 2013 - Changed to MongoDB. Added unsubscribe (!) and ability to ignore small patch updates.
 0.1.0 - First functioning version.
 
 ## License
