@@ -23,6 +23,7 @@
   "dependencies": {
     "angular-bootstrap": "~0.6.0",
     "bootstrap": "~3.0.0",
-    "angular": "~1.2.0"
+    "angular": "~1.2.0",
+    "underscore": "~1.5.2"
   }
 }
