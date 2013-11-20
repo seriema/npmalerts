@@ -5,7 +5,7 @@ var githubWrapper = require('../lib/github.js');
 var npmWrapper = require('../lib/npm.js');
 
 var semver = require('semver');
-var _ = require('underscore');
+var _ = require('lodash');
 
 
 var sampleGithubUrls = [
