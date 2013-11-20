@@ -1,7 +1,7 @@
 doctype
 html(ng-app='npmalerts')
     head
-        // Google Analytics Content Experiment code
+         // Google Analytics Content Experiment code
          script.
              function utmx_section(){}function utmx(){}(function(){var
              k='78050976-0',d=document,l=d.location,c=d.cookie;
@@ -14,8 +14,11 @@ html(ng-app='npmalerts')
              '&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
              valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
              '" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
-             </script><script>utmx('url','A/B');
-         // End of Google Analytics Content Experiment code
+
+        script.
+            utmx('url','A/B');
+
+        // End of Google Analytics Content Experiment code
 
 
         meta(charset='utf-8')
