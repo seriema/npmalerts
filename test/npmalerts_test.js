@@ -1,22 +1,5 @@
 'use strict';
 
-//var npmalerts = require('../lib/npmalerts.js');
-var githubWrapper = require('../lib/github.js');
-var npmWrapper = require('../lib/npm.js');
-
-var semver = require('semver');
-var _ = require('lodash');
-
-
-var sampleGithubUrls = [
-    'http://github.com/seriema/seriema.github.io.git',
-    'https://github.com/seriema/seriema.github.io.git',
-    'http://github.com/seriema/seriema.github.io',
-    'https://github.com/seriema/seriema.github.io',
-    'http://www.github.com/seriema/seriema.github.io',
-    'https://www.github.com/seriema/seriema.github.io',
-    'git://github.com/seriema/seriema.github.io.git'
-];
 
 var mockPackageJson = {
   "devDependencies": {
@@ -52,42 +35,6 @@ var mockPackageJson = {
 */
 
 exports['npmalerts'] = {
-	setUp: function(done) {
-		// setup here
-		done();
-	},
-
-	// GitHub
-	'get package.json in Github repo': function(test) {
-		test.expect(1);
-		githubWrapper.getPackageJson('seriema', 'prim.js', function(error) {
-			test.ok(!error, error);
-			test.done();
-		});
-	},
-	'read package.json in Github repo': function(test) {
-		test.expect(2);
-		githubWrapper.getPackageJson('seriema', 'prim.js', function(error, json) {
-			test.notEqual(json, undefined);
-			test.strictEqual(typeof json, 'object');
-			test.done();
-		});
-	},
-	'parse username from Github address': function(test) {
-		test.expect(sampleGithubUrls.length);
-        _.forEach(sampleGithubUrls, function(address) {
-            test.strictEqual(githubWrapper.getUserFromUrl(address), 'seriema', address);
-        });
-        test.done();
-	},
-	'parse project name from Github adress': function(test) {
-        test.expect(sampleGithubUrls.length);
-        _.forEach(sampleGithubUrls, function(address) {
-            test.strictEqual(githubWrapper.getRepoFromUrl(address), 'seriema.github.io', address);
-        });
-		test.done();
-	},
-
 	// Parsing package.json
 	'find dependencies in package.json': function(test) {
 		test.expect(1);
@@ -118,54 +65,6 @@ exports['npmalerts'] = {
 		test.strictEqual(packages[0].name, 'github');
 		test.strictEqual(packages[0].version, '~0.1.10');
 
-		test.done();
-	},
-
-	// npm
-	'get latest package version': function(test) {
-		test.expect(2);
-		npmWrapper.getLatestVersion('github', function(error, version) {
-			test.ok(!error);
-			test.ok(version);
-			test.done();
-		});
-	},
-	'get all packages from npm': function(test) {
-		test.expect(2);
-        var yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-		npmWrapper.getLatestPackages(yesterday, function(error, newPackages) {
-            test.ok(!error);
-			test.ok(newPackages);
-			test.done();
-		});
-	},
-
-	// semver
-	'check package version': function(test) {
-		test.expect(1);
-		test.ok(semver.valid('0.1.10'));
-		test.done();
-	},
-	'detect new version available': function(test) {
-		test.expect(1);
-		test.ok(semver.lt('1.2.3', '9.8.7'));
-		test.done();
-	},
-	'detect packages with same version': function(test) {
-		test.expect(2);
-		test.ok(!semver.lt('1.2.3', '1.2.3'));
-		test.ok(!semver.gt('1.2.3', '1.2.3'));
-		test.done();
-	},
-	'detect new version is within semver limits of package.json': function(test) {
-		test.expect(1);
-		test.ok(semver.satisfies('1.2.4', '~1.2.3'));
-		test.done();
-	},
-	'detect new version is outside of semver limits of package.json': function(test) {
-		test.expect(1);
-		test.ok(!semver.satisfies('1.3.0', '~1.2.3'));
 		test.done();
 	},
 
