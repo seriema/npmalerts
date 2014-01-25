@@ -28,7 +28,7 @@
   "devDependencies": {
     "bower": "~1.2.7",
     "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.7.0",
+    "grunt-contrib-jshint": "~0.8.0",
     "grunt-contrib-nodeunit": "~0.2.1",
     "grunt-contrib-watch": "~0.5.3",
     "npm-registry-mock": "~0.5.4"
