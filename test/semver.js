@@ -22,6 +22,13 @@ exports['semver'] = {
     test.ok(semver.isNew(cached, versionRange));
     test.done();
   },
+  'version outside ^range but greater is new': function(test) {
+    test.expect(1);
+    var cached = '1.4.0';
+    var versionRange = '^0.6.0';
+    test.ok(semver.isNew(cached, versionRange));
+    test.done();
+  },
   'version same as base range is not new': function(test) {
     test.expect(1);
     var cached = '1.2.3';
