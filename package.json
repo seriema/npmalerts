@@ -1,6 +1,6 @@
 {
   "name": "npmalerts",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Get notified when npm modules are updated!",
   "homepage": "http://npmalerts.com",
   "bugs": {
