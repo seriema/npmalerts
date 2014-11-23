@@ -12,18 +12,24 @@ var sampleGithubUrls = [
   'git://github.com/seriema/seriema.github.io.git'
 ];
 
-
 exports['github'] = {
+  'fail to get package.json in Github repo': function(test) {
+    test.expect(1);
+    githubWrapper.getPackageJson('fake', 'foo', function(error) {
+      test.ok(!!error, error && error.message);
+      test.done();
+    });
+  },
   'get package.json in Github repo': function(test) {
     test.expect(1);
-    githubWrapper.getPackageJson('seriema', 'prim.js', function(error) {
-      test.ok(!error, error);
+    githubWrapper.getPackageJson('seriema', 'npmalerts', function(error) {
+      test.ok(!error, error && error.message);
       test.done();
     });
   },
   'read package.json in Github repo': function(test) {
     test.expect(2);
-    githubWrapper.getPackageJson('seriema', 'prim.js', function(error, json) {
+    githubWrapper.getPackageJson('seriema', 'npmalerts', function(error, json) {
       test.notEqual(json, undefined);
       test.strictEqual(typeof json, 'object');
       test.done();
