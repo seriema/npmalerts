@@ -40,7 +40,7 @@
     "mongodb": "^1.4.0",
     "mongoose": "~3.8.0",
     "npm": "1.4.4",
-    "semver": "~2.2.1",
+    "semver": "^4.1.0",
     "sendgrid": "^1.0.2"
   },
   "main": "./lib/web.js",
