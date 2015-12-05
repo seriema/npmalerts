@@ -27,21 +27,22 @@
   },
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-jshint": "^0.11.3",
     "grunt-contrib-nodeunit": "^0.4.1",
     "grunt-contrib-watch": "^0.6.0",
-    "npm-registry-mock": "^0.6.0"
+    "npm-registry-mock": "^1.0.1"
   },
   "dependencies": {
-    "express": "^3.5.1",
-    "express-validator": "~2.1.1",
+    "express": "^4.13.3",
+    "express-validator": "^2.18.0",
     "github": "^0.2.3",
-    "lodash": "~2.4.0",
-    "mongodb": "^1.4.0",
-    "mongoose": "~3.8.0",
-    "npm": "1.4.4",
-    "semver": "^4.1.0",
-    "sendgrid": "^1.0.2"
+    "lodash": "^3.10.1",
+    "mongodb": "^2.0.49",
+    "mongoose": "^4.2.9",
+    "npm": "^3.5.1",
+    "npm-registry-client": "^7.0.9",
+    "semver": "^5.1.0",
+    "sendgrid": "^2.0.0"
   },
   "main": "./lib/web.js",
   "directories": {
